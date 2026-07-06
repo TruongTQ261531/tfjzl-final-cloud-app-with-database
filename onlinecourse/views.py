@@ -132,5 +132,16 @@ def extract_answers(request):
         # Calculate the total score
 #def show_exam_result(request, course_id, submission_id):
 
+def submit(request, course_id):
+    course = get_object_or_404(Course, pk=course_id)
+    # Xử lý nộp bài
+    return redirect('onlinecourse:show_exam_result', course_id=course.id, submission_id=1)
 
+def show_exam_result(request, course_id, submission_id):
+    course = get_object_or_404(Course, pk=course_id)
+    context = {
+        'course': course,
+        'score': 100
+    }
+    return render(request, 'onlinecourse/exam_result_bootstrap.html', context)
 
